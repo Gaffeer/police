@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Wyszukiwarka miejsc składowania</title>
+    <style>
+        /* Twój styl CSS tutaj */
+        /* Przykładowy styl */
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1E1E1E;
+            color: #FFFFFF;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #1E1E1E;
+            box-shadow: 0 0 10px rgb(255, 255, 255);
+            border-radius: 5px;
+            margin-top: 50px;
+        }
+        
+        h1 {
+            text-align: center;
+        }
+        
+        input[type="text"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        
+        input::placeholder {
+            font-size: 18px;
+            /* Zmień na preferowany rozmiar */
+        }
+        
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        li {
+            margin-bottom: 5px;
+            background-color: #1E1E1E;
+            padding: 10px;
+            border-radius: 4px;
+            box-shadow: 0 0 3px rgb(255, 255, 255);
+        }
+        
+        #headers {
+            display: flex;
+            justify-content: space-between;
+            padding: 30px;
+        }
+        
+        #taryfikator,
+        #nielegale {
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="headers">
+        <a href="taryfikator.html">
+            <h1 id="taryfikator">Taryfikator</h1>
+        </a>
+        <h1 id="nielegale">Towary Nielegalne</h1>
+    </div>
+    <div class="container">
+        <h1>Wyszukiwarka miejsc składowania</h1>
+        <input type="text" id="searchInput" placeholder="Wyszukaj miejsce składowania...">
+        <div id="results"></div>
+        <h2>Lista miejsc załadunku/rozładunku:</h2>
+        <ul id="loadingPlaces">
+            <li>Banning przy Carson Ave: Rafineria (9)</li>
+            <li>Burton przy Carcer Way: LS Customs (39)</li>
+            <li>Banning przy Dutch London St: Przystań (43)</li>
+            <li>Centrum przy Los Santos Freeway: Tor Konny (45)</li>
+            <li>Centrum Vinewood przy Laguna Pl: GoPostal (50)</li>
+            <li>Centrum Vinewood przy Las Lagunas Blvd: Muzeum (38)</li>
+            <li>Chumash przy Banham Canyon Dr: Plac Chumash (29)</li>
+            <li>Chumash przy Barabeno Rd: Plac Chumash (29)</li>
+            <li>Cypress Flat przy Chum St Magazyn Cypress (1)</li>
+            <li>Cypress Flats przy Buccaneer Way: Port (56)</li>
+            <li>Cypress Flats przy Carson Ave: Rafineria (9)</li>
+            <li>Cypress Flats przy El Rancho Blvd: Ubojnia (3)</li>
+            <li>Cypress Flats przy Hanger Way: Magazyn Cypress (1)</li>
+            <li>Cypress Flats przy Orchardville Ave: Magazyn Cypress (1)</li>
+            <li>Cypress Flats przy Orchardville Ave: Ubojnia (3)</li>
+            <li>Cypress Flats przy Popular St: Magazyn Cypress (1)</li>
+            <li>Cypress Flats przy Popular St: Zakłady chemiczne (2)</li>
+            <li>Davis Quartz przy Senora Way: Kopalnia (12)</li>
+            <li>Davis przy Brouge Ave - Carson Self Storage (87)</li>
+            <li>Del Perro Beach przy Red Desert Ave: Molo (23)</li>
+            <li>Del Perror przy Płd. Rockford RP: Maze Bank (61)</li>
+            <li>Elysian Island przy Signal St Doki: Południowo-Zachodnie (49)</li>
+            <li>El Buro Heights przy El Rancho Blvd: Pola naftowe (77)</li>
+            <li>El Burro Heights przy Capital Blvd: Szpital (60)</li>
+            <li>El Buro Heights przy El Burro Blvd Pola naftowe (77)</li>
+            <li>El Burro Heights przy Labor Pl: Magazyn broni (10)</li>
+            <li>Elektrownia Palmer-Taylor przy Senora Way: Elektrownia (11)</li>
+            <li>Farma wiatrowa Ron Alternates przy Senora Way: Farma wiatrowa (11)</li>
+            <li>Fort Zancudo przy Droga dojazdowa do Fortu Zancudo: Fort Zancudo (41)</li>
+            <li>Fort Zancudo przy Great Ocean Hwy: Oczyszczalnia ścieków (78)</li>
+            <li>Galilee przy Płn. Calafia Way: Sklep z łodziami (36)</li>
+            <li>Góra Chiliad przy Great Ocean Hwy: Farma w Blaine Country (54)</li>
+            <li>Góra Chiliad przy O'Neil Way: Farma Bradock (36)</li>
+            <li>Góra Chiliad przy Procopio Promenade: Cluckin Bell (47)</li>
+            <li>Góra Chiliad przy Senora Fwy: Farma Bradock (35)</li>
+            <li>Góra Chilliad przy Great Ocean Hwy: Cluckin Bell (46)</li>
+            <li>Góra Gordo przy Catfish View: Latarnia Morska (76)</li>
+            <li>Góry Tataviam przy Los Santos Freeway: Wodociąg przy tamie (53)</li>
+            <li>Góry Tataviam przy Palomino Freeway: Stacja paliw przy autostradzie (58) </li>
+            <li>Góry Taviatam przy Los Santos Freeway: Wodociąg przy tamie (53)</li>
+            <li>Grand Senora Deset przy Joshua Rd: Betoniarnia (13)</li>
+            <li>Grapeseed przy Grapeseed Main St: Supermarket (25)</li>
+            <li>Grapeseed przy Joad Ln: Lotnisko McKenzie (80)</li>
+            <li>Grapeseed przy O'Neil Way: Farma w Sandy Shores (73)</li>
+            <li>Grapeseed przy Seaview Rd: Lotnisko McKenzie (80)</li>
+            <li>Great Chaparral przy Baytree Canyon Rd: Szklarnie (30)</li>
+            <li>Harmony przy Droga 68: Magazyn (17)</li>
+            <li>Harmony przy Joshua Rd: Magazyn (17)</li>
+            <li>Hawick przy Alta St: Ciucholand (37)</li>
+            <li>Humane Labs and Research przy Chianski Passage: Humane Labs (18)</li>
+            <li>La Mesa przy Elysian Fields Freeway: Fabryka lodówek (47)</li>
+            <li>La Mesa przy Olympic Freeway: Magazyny DHL (67)</li>
+            <li>La Mesa przy Supply St: Fabryka samochodów (5)</li>
+            <li>La Mesa przy Vespucci Blvd: Fabryka ciuchów (4)</li>
+            <li>La Mesa przy Vespucci Blvd: Fabryka samochodów (5)</li>
+            <li>La Puerta przy La Puerta Freeway: Wysypisko (22)</li>
+            <li>La Puerta przy Tackle St: Przystań (43)</li>
+            <li>Las Paleto przy Great Ocean Hwy: Tartak (6)</li>
+            <li>Las Paleto przy Procopio Promenade: Zajazd (7)</li>
+            <li>Lotnisko międzynarodowe Los Santos przy Autopia Pkwy: Lotnisko (24)</li>
+            <li>Lotnisko międzynarodowe Los Santos Przy Greenwich Pkwy: Bilgeco (59)</li>
+            <li>Lotnisko międzynarodowe Los Santos przy La Puerta Freeway: Xero Gas (57)</li>
+            <li>Masyw górski San Chianski przy Catfish View: Stary port (34)</li>
+            <li>Masyw górski San Chianski przy Union Rd: Skład ziaren (26)</li>
+            <li>Murrieta Heigs przy Olympic freeway: Magazyn Broni (10)</li>
+            <li>NOOSE przy Palomino Freeway: NOOSE (40)</li>
+            <li>NOOSE przy Sustancia Rd: NOOSE (40)</li>
+            <li>Pacific Bluffs przy Great Ocean Hwy: Klub tenisowy (21)</li>
+            <li>Pacific Bluffs przy Kortz Dr: Klub tenisowy (21)</li>
+            <li>Pacific Bluffs przy Kortz Dr: Galeria Sztuki (62)</li>
+            <li>Pacific Bluffs przy Playa Vista: Crastenburg Hotel (72)</li>
+            <li>Pacific Bluffs przy Zach. Eclipse Blvd: Hotel Crastenburg (72)</li>
+            <li>Pacific Bluffs przy zach Eclipse Blvd: Hotel Crastenburg (72)</li>
+            <li>Paleto Bay przy Great Ocean Hwy: Budowa magazynu UPS (65)</li>
+            <li>Paleto Bay przy Paleto Blv: Poczta (8)</li>
+            <li>Paleto Bay przy Paleto Blvd: Zajazd (7)</li>
+            <li>Paleto Bay przy Procopio Promenade: Poczta (8)</li>
+            <li>Park Galileusza przy Mt Haan Dr: Anteny LSRD (15)</li>
+            <li>Park Krajobrazowy Góry Chiliad Przy Great Ocena Hwy: Tartak (6)</li>
+            <li>Park Mirror przy Mirror Park Blvd: Galeria na przedmieściach (71)</li>
+            <li>Park Mirror przy Utopia Gardens: Osiedle domkow willowych (70)</li>
+            <li>Park MIrror przy Zach. Mirror Drive: Hypermarket (68)</li>
+            <li>Pillbox Hill przy Adam's Apple Blvd: Niedokończony wieżowiec (48)</li>
+            <li>Plaża Del Perro przy Red Desert Ave: Molo (23)</li>
+            <li>Północne Chumash przy Great Ocean Hwy: Restauracja hookies (28)</li>
+            <li>Pustynia Grand Senora przy Baytree Canyon Rd: Szklarnie (30)</li>
+            <li>Pustynia Grand Senora przy Cat-Claw Ave: Złomowisko (33)</li>
+            <li>Pustynia Grand Senora przy Droga 68: Betoniarnia (13)</li>
+            <li>Pustynia Grand Senora przy Droga 68: Larys (75)</li>
+            <li>Pustynia Grand Senora przy Droga 68: Market (16)</li>
+            <li>Pustynia Grand Senora przy Joshua Rd: Betoniarnia (13)</li>
+            <li>Pustynia Grand Senora przy Joshua Rd: Mleczarnia (44)</li>
+            <li>Pustynia Grand Senora przy Senora Fwy: Złomowisko (33)</li>
+            <li>Pustynia Grand Senora przy Senora Rd: Farma (19)</li>
+            <li>Richards Majestic przy Heritage Way: Studio (55)</li>
+            <li>Ron Alternates Wind Farm przy Senora Way: Farma wiatrowa (11)</li>
+            <li>Sandy Shores przy Algonquin Blvd: Sklep monopolowy (31)</li>
+            <li>Sandy Shores przy Senora Fwy: Market budowlany (32)</li>
+            <li>Stowarzyszenie GWC & Golfing przy Greenwich Pl: The Richman Hotel (63)</li>
+            <li>Stowarzyszenie GWC & Golfing przy Zach. Eclipse Blvd: Pole Golfowe (51)</li>
+            <li>Strawberry przy Strawberry Ave: Klub nocny (69)</li>
+            <li>Terminal przy Buccaneer Way: Port (56)</li>
+            <li>Textile City przy Little Bighorn Ave: Bocznica kolejowa (64)</li>
+            <li>Tongva Hills przy Tongva Dr: Winnica (42)</li>
+            <li>Tongva Gills przy Buen Vina Rd: Winnica (42)</li>
+            <li>Tor Redwood Lights przy Senora Rd: Budowa (20)</li>
+            <li>Tor wyścigowy Vinewood przy Vinewood Park Dr: Tor konny (45)</li>
+            <li>Vespucci Beach przy Bay City Ave: Magazyn Straży Przybrzeżnej (52)</li>
+            <li>Vespucci przy Magellan Ave: Promenada przy plaży (66)</li>
+            <li>Vespucci przy Vitus St: Promenada przy plaży (66)</li>
+            <li>Vinewood Hills przy Las Lagunas Blvd: Muzeum (38)</li>
+            <li>Vinewood Hills przy Baytree Canyon Rd: Teatr (14)</li>
+            <li>Vinewood Hills przy Los Santos Freeway: Stadnina (75)</li>
+            <li>Vinewood Racetack przy Vinewood Park Dr: Tor Konny (45)</li>
+            <li>Wyspa Elizejska przy Plaice Pl: PostOP (27)</li>
+            <li>Wyspa Elizejska przy Signal St: Doki Południowo-Zachodnie (49)</li>
+            <li>Wyspa Elizejska przy Voodoo Place: Doki Południowo-Zachodnie (49) </li>
+            <li>San Andreas: cały obszar CP </li>
+            <li>Cayo Perico: cały obszar CP</li>
+            <!-- Tutaj dodaj resztę miejsc załadunku/rozładunku -->
+        </ul>
+    </div>
+
+    <script>
+        const searchInput = document.getElementById('searchInput');
+        const loadingPlaces = document.getElementById('loadingPlaces');
+
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+
+            Array.from(loadingPlaces.getElementsByTagName('li')).forEach(place => {
+                const text = place.textContent.toLowerCase();
+                if (text.includes(searchTerm)) {
+                    place.style.display = 'block';
+                } else {
+                    place.style.display = 'none';
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>
