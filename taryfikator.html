@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Taryfikator</title>
+    <style>
+        /* Dodaj dowolne style CSS tutaj */
+        
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #1E1E1E;
+        }
+        
+        #headers {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            padding: 20px;
+        }
+        
+        #taryfikator,
+        #nielegale {
+            color: #fff;
+        }
+        
+        table {
+            border-collapse: collapse;
+            margin: auto;
+            background-color: #1E1E1E;
+            color: #fff;
+            box-shadow: 0 0 10px rgb(255, 255, 255);
+        }
+        
+        th,
+        td {
+            /* border: 1px solid #dddddd; */
+            box-shadow: 0 0 2px rgb(255, 255, 255);
+            text-align: left;
+            padding: 8px;
+        }
+        
+        th {
+            background-color: #414141;
+            text-align: center;
+        }
+        
+        #kategoria {
+            background-color: #414141;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        #search {
+            text-align: center;
+        }
+        
+        #searchInput {
+            width: 500px;
+            height: 40px;
+            border: 4px solid gray;
+            border-radius: 10px;
+            margin-bottom: 50px;
+        }
+        
+        input::placeholder {
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="headers">
+        <h1 id="taryfikator">Taryfikator</h1>
+        <a href="nielegale.html">
+            <h1 id="nielegale">Towary Nielegalne</h1>
+        </a>
+    </div>
+
+    <div id="search">
+        <input type="text" id="searchInput" placeholder="Wyszukaj wykroczenie..." oninput="search()">
+        <!-- <button onclick="search()">Szukaj</button> -->
+    </div>
+
+    <div id="results"></div>
+
+    <table id="offensesTable">
+        <tr>
+            <th>Wykroczenie</th>
+            <th>Kwota mandatu</th>
+        </tr>
+        <!-- Tutaj wklej dane o wykroczeniach jako wiersze tabeli -->
+        <tr>
+            <td colspan="3" id="kategoria">Prędkość</td>
+        </tr>
+        <tr>
+            <td>Przekroczenie prędkości o 21-40km/h:</td>
+            <td>$2 000</td>
+        </tr>
+        <tr>
+            <td>Przekroczenie prędkości o 41-80km/h:</td>
+            <td>$2 500</td>
+        </tr>
+        <tr>
+            <td>Przekroczenie prędkości o 81-120km/h:</td>
+            <td>$4 000</td>
+        </tr>
+        <tr>
+            <td>Przekroczenie prędkości o 121km/h i więcej:</td>
+            <td>$6 000</td>
+        </tr>
+        <tr>
+            <td>Jazda z prędkością poniżej 50km/h na drogach szybkiego ruchu:</td>
+            <td>$2 000 - $4 000 </td>
+        </tr>
+        <tr>
+            <td colspan="3" id="kategoria">Manewry</td>
+        </tr>
+        <tr>
+            <td>Wykonanie niedozwolonego manewru:</td>
+            <td>$2 500</td>
+        </tr>
+        <tr>
+            <td>Wyprzedzanie w miejscu niedozwolonym:</td>
+            <td>$1 000 - $2 000</td>
+        </tr>
+        <tr>
+            <td>Jazda pod prąd:</td>
+            <td>$4 500</td>
+        </tr>
+        <tr>
+            <td>Skracanie:</td>
+            <td>$1 500</td>
+        </tr>
+        <tr>
+            <td>Zajmowanie więcej niż jednego wyznaczonego na jezdni pasa ruchu:</td>
+            <td>$1 500</td>
+        </tr>
+        <tr>
+            <td>Wjeżdżanie na pas między jezdniami (jednokierunkowymi):</td>
+            <td>$1 500</td>
+        </tr>
+        <tr>
+            <td>Poruszanie się po poboczu lub chodniku:</td>
+            <td>$2 000</td>
+        </tr>
+        <tr>
+            <td>Nieustąpienie pierwszeństwa:</td>
+            <td>$250 - $600</td>
+        </tr>
+        <tr>
+            <td>Hamowanie w sposób powodujący zagrożenie bezpieczeństwa ruchu lub jego utrudnianie:</td>
+            <td>$4 000</td>
+        </tr>
+        <tr>
+            <td>Zawracanie w tunelach, na mostach, wiaduktach, drogach jednokierunkowych oraz szybkiego ruchu:</td>
+            <td>$5 000</td>
+        </tr>
+        <tr>
+            <td>Specjalne utrudnianie, blokowanie lub tamowanie ruchu drogowego:</td>
+            <td>$4 500</td>
+        </tr>
+        <tr>
+            <td>Cofanie na drogach szybkiego ruchu:</td>
+            <td>$2 500</td>
+        </tr>
+        <tr>
+            <td colspan="3" id="kategoria">Transport</td>
+        </tr>
+        <tr>
+            <td>Przeładowanie pojazdu (5t):</td>
+            <td>$3 000</td>
+        </tr>
+        <tr>
+            <td>Przeładowanie pojazdu (10t):</td>
+            <td>$5 000</td>
+        </tr>
+        <tr>
+            <td>Przewożenie towarów nielegalnych:</td>
+            <td>$250 * lvl gracza + Anulowanie towaru</td>
+        </tr>
+        <tr>
+            <td>Rozładowanie towaru podczas kontroli:</td>
+            <td>$10 000 + 10 min więzienia</td>
+        </tr>
+        <tr>
+            <td colspan="3" id="kategoria">Ucieczka</td>
+        </tr>
+        <tr>
+            <td>Ucieczka:</td>
+            <td>$20 000 + 30 min więzienia</td>
+        </tr>
+        <tr>
+            <td>Pomoc w pościgu na korzyść uciekającego:</td>
+            <td>$15 000 + 10 min więzienia</td>
+        </tr>
+        <tr>
+            <td>Usunięcie listu gończego:</td>
+            <td>30 minut więzienia i $50 000 (szczegóły w regulaminie)</td>
+        </tr>
+        <tr>
+            <td colspan="3" id="kategoria">Kradzież</td>
+        </tr>
+        <tr>
+            <td>Kradzież pojazdów prywatnych:</td>
+            <td>$1 000 + 5 min więzienia</td>
+        </tr>
+        <tr>
+            <td>Kradzież pojazdów frakcyjnych/firmowych:</td>
+            <td>$7 500 + 15 min więzienia</td>
+        </tr>
+        <tr>
+            <td colspan="3" id="kategoria">Zdarzenia drogowe</td>
+        </tr>
+        <tr>
+            <td>Spowodowanie kolizji lub wypadku drogowego:</td>
+            <td>$1 500 + naprawa pojazdu uszkodzonego na koszt powodującego zdarzenie</td>
+        </tr>
+        <tr>
+            <td>Celowe ramowanie:</td>
+            <td>$10 000 + 15 min więzienia</td>
+        </tr>
+        <tr>
+            <td>Specjalne niszczenie pojazdu innego gracza (kopanie, uderzanie):</td>
+            <td>$5 000</td>
+        </tr>
+        <tr>
+            <td colspan="3" id="kategoria">Postój</td>
+        </tr>
+        <tr>
+            <td>Zatrzymanie się w miejscu niedozwolonym:</td>
+            <td>$1 000</td>
+        </tr>
+        <tr>
+            <td>Zatrzymanie się na parkingu policyjnym dłużej niż 5 min:</td>
+            <td>$1 500</td>
+        </tr>
+        <tr>
+            <td colspan="3" id="kategoria">Inne</td>
+        </tr>
+        <tr>
+            <td>Bezpodstawne wezwanie:</td>
+            <td>$3 000</td>
+        </tr>
+        <tr>
+            <td>Agresja słowna wobec funkcjonariusza:</td>
+            <td>5 min więzienia</td>
+        </tr>
+        <tr>
+            <td>Atak na inną osobę:</td>
+            <td>$4 000 i 5 min więzienia</td>
+        </tr>
+        <tr>
+            <td>Atak na funkcjonariusza:</td>
+            <td>$5 000 i 15 min więzienia</td>
+        </tr>
+        <tr>
+            <td>Zabójstwo gracza:</td>
+            <td>$2 000 i 10 min więzienia</td>
+        </tr>
+        <tr>
+            <td>Zabójstwo funkcjonariusza:</td>
+            <td>$7 500 i 20 min więzienia</td>
+        </tr>
+        <tr>
+            <td>Niestosowanie się do poleceń funkcjonariusza Policji:</td>
+            <td>$5 000 + 15 min więzienia</td>
+        </tr>
+        <tr>
+            <td>Próba przekupstwa funkcjonariusza:</td>
+            <td>$5 000</td>
+        </tr>
+        <tr>
+            <td>Celowe utrudnianie pracy frakcjom:</td>
+            <td>$5 500</td>
+        </tr>
+        <tr>
+            <td>Nielegalne wyścigi:</td>
+            <td>$2 500</td>
+        </tr>
+        <tr>
+            <td>Nielegalny zlot samochodowy:</td>
+            <td>$2 500</td>
+        </tr>
+        <tr>
+            <td>Propagowanie nienawiści:</td>
+            <td>$10 000 lub kara według regulaminu serwera</td>
+        </tr>
+        <tr>
+            <td>Wprowadzenie w błąd funkcjonariusza:</td>
+            <td>$10 000 i 10 min więzienia</td>
+        </tr>
+        <tr>
+            <td>Kara za przebywanie osób nieupoważnionych na terenie aresztu komendy głównej (tj. całego piętra -1):</td>
+            <td>$10 000 i 10 min więzienia </td>
+        </tr>
+        <tr>
+            <td colspan="3" id="kategoria">Ruch lotniczy</td>
+        </tr>
+        <tr>
+            <td>Lądowanie na dachu komisariatu policji:</td>
+            <td>$100 000</td>
+        </tr>
+        <tr>
+            <td>Lądowanie na ulicy:</td>
+            <td>$50 000</td>
+        </tr>
+        <tr>
+            <td>Spowodowanie katastrofy lotniczej:</td>
+            <td>$30 000</td>
+        </tr>
+        <tr>
+            <td colspan="3" id="kategoria">TARYFIKATOR NA WYSPIE CAYO PERICO</td>
+        </tr>
+        <tr>
+            <td>Wyprzedzanie na moście przez pojazdy nieuprzywilejowane:</td>
+            <td>$8 000 - $12 000</td>
+        </tr>
+        <tr>
+            <td>Celowe ramowanie:</td>
+            <td>$12 000 + 15 minut więzienia</td>
+        </tr>
+        <tr>
+            <td>Zatrzymanie się na moście prowadzącym na Cayo Perico:</td>
+            <td>$6 000</td>
+        </tr>
+        <tr>
+            <td>Cofanie na moście:</td>
+            <td>$3 000 - $6 000</td>
+        </tr>
+        <tr>
+            <td>Spowodowanie kolizji:</td>
+            <td>$10 000</td>
+        </tr>
+        <tr>
+            <td>Lądowanie na dachu komisariatu policji:</td>
+            <td>$8 500</td>
+        </tr>
+        <!-- Dodaj resztę wykroczeń z tabeli -->
+    </table>
+
+    <script>
+        const originalTable = document.getElementById('offensesTable').cloneNode(true);
+
+        function normalizeText(text) {
+            return text.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+        }
+
+        function search() {
+            const searchTerm = normalizeText(document.getElementById('searchInput').value.trim());
+            const table = document.getElementById('offensesTable');
+            table.innerHTML = originalTable.innerHTML;
+
+            if (searchTerm === '') {
+                return;
+            }
+
+            const rows = table.getElementsByTagName('tr');
+
+            for (let i = rows.length - 1; i > 0; i--) {
+                const cells = rows[i].getElementsByTagName('td');
+                let found = false;
+
+                for (let j = 0; j < cells.length; j++) {
+                    const cellText = normalizeText(cells[j].textContent);
+                    if (cellText.includes(searchTerm)) {
+                        found = true;
+                        break;
+                    }
+                }
+
+                if (!found) {
+                    table.deleteRow(i);
+                }
+            }
+        }
+
+        document.getElementById('searchInput').addEventListener('input', () => {
+            search();
+        });
+    </script>
+</body>
+
+</html>
